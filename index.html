@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo Profissional - Felipe Alves</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #2563eb;
+            --primary-subtle: #eff6ff;
+            --dark: #0f172a;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --tag-bg: #f1f5f9;
+            --tag-text: #1e293b;
+            --success: #16a34a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Barra de Ações Superior */
+        .actions-bar {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 18px;
+            gap: 12px;
+        }
+
+        .btn-print {
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn-print:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-1px);
+        }
+
+        /* Container Principal do Currículo */
+        .resume-card {
+            background-color: var(--bg-card);
+            max-width: 900px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.07), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        /* Cabeçalho de Impacto */
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: #ffffff;
+            padding: 40px 40px 32px;
+            text-align: center;
+        }
+
+        /* Foto de Perfil */
+        .profile-photo-wrapper {
+            margin-bottom: 16px;
+        }
+
+        .profile-photo {
+            width: 135px;
+            height: 135px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 15%;
+            border: 4px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            display: inline-block;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.04);
+            border-color: #93c5fd;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .header .job-title {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #93c5fd;
+            margin-bottom: 22px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contatos Alinhados em Grid com Ícones */
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px 24px;
+            font-size: 0.92rem;
+            color: #e2e8f0;
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #e2e8f0;
+            transition: color 0.2s;
+        }
+
+        .contact-item:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .contact-item svg {
+            width: 17px;
+            height: 17px;
+            fill: currentColor;
+            opacity: 0.9;
+        }
+
+        /* Layout em Duas Colunas */
+        .resume-body {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 35px;
+            padding: 40px;
+        }
+
+        /* Títulos de Seção */
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary);
+        }
+
+        /* Coluna Lateral */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .profile-text {
+            font-size: 0.93rem;
+            color: var(--text-main);
+            text-align: justify;
+            line-height: 1.65;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .skill-tag.highlight {
+            background-color: var(--primary-subtle);
+            color: var(--primary);
+            border-color: #bfdbfe;
+        }
+
+        /* Coluna Principal */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        /* Timeline de Experiências e Formação */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #cbd5e1;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px var(--primary-subtle);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .role-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .company-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary-light);
+        }
+
+        .badge-date {
+            font-size: 0.78rem;
+            font-weight: 600;
+            background-color: #f1f5f9;
+            color: #475569;
+            padding: 3px 10px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        .badge-date.active {
+            background-color: #dcfce7;
+            color: var(--success);
+        }
+
+        .timeline-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            line-height: 1.55;
+        }
+
+        .timeline-list {
+            margin-top: 8px;
+            padding-left: 18px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .timeline-list li {
+            margin-bottom: 5px;
+        }
+
+        /* Rodapé Discreto */
+        .footer {
+            background-color: #f8fafc;
+            border-top: 1px solid var(--border);
+            padding: 16px;
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsividade para Smartphones e Tablets */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.9rem;
+            }
+
+            .resume-body {
+                grid-template-columns: 1fr;
+                padding: 25px 20px;
+                gap: 28px;
+            }
+
+            .contact-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+
+        /* Estilos Otimizados para Impressão e PDF */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+
+            .actions-bar, .footer {
+                display: none;
+            }
+
+            .resume-card {
+                box-shadow: none;
+                border: none;
+                max-width: 100%;
+            }
+
+            .header {
+                background: #0f172a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                padding: 25px 30px;
+            }
+
+            .profile-photo {
+                width: 105px;
+                height: 105px;
+                border: 3px solid #ffffff !important;
+                box-shadow: none;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .resume-body {
+                padding: 25px 30px;
+                gap: 25px;
+            }
+
+            .timeline-item {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Impressão Rápida -->
+    <div class="actions-bar">
+        <button class="btn-print" onclick="window.print()">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/>
+            </svg>
+            Imprimir / Salvar em PDF
+        </button>
+    </div>
+
+    <main class="resume-card">
+        
+        <!-- Cabeçalho Principal -->
+        <header class="header">
+            <div class="profile-photo-wrapper">
+                <img src="perfil.jpg" alt="Foto de Perfil de Felipe Alves" class="profile-photo">
+            </div>
+            <h1>Felipe Alves</h1>
+            <p class="job-title">Técnico em Automação Industrial &bull; Engenharia Elétrica</p>
+            
+            <div class="contact-grid">
+                <a class="contact-item" href="mailto:felipeliimas6@gmail.com" title="Enviar E-mail">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    felipeliimas6@gmail.com
+                </a>
+                
+                <a class="contact-item" href="tel:759819355575" title="Ligar">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    (75) 98193-5575
+                </a>
+
+                <span class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    Bahia, Brasil
+                </span>
+            </div>
+        </header>
+
+        <!-- Corpo do Currículo -->
+        <div class="resume-body">
+            
+            <!-- Barra Lateral: Perfil e Habilidades -->
+            <aside class="sidebar">
+                
+                <!-- Perfil Profissional -->
+                <section>
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        Perfil
+                    </h2>
+                    <p class="profile-text">
+                        Profissional técnico com sólida formação em Automação Industrial e graduando em Engenharia Elétrica. Experiência prática comprovada na indústria de elevação e transporte vertical (multinacionais líderes do setor), atuando com manutenção preventiva, corretiva e diagnóstico avançado de falhas elétricas e mecânicas com alto rigor técnico e segurança.
+                    </p>
+                </section>
+
+                <!-- Competências Técnicas -->
+                <section>
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+                        Habilidades
+                    </h2>
+                    <div class="skills-list">
+                        <span class="skill-tag highlight">Manutenção Eletromecânica</span>
+                        <span class="skill-tag highlight">Automação Industrial</span>
+                        <span class="skill-tag">Transporte Vertical (Elevadores)</span>
+                        <span class="skill-tag">Diagnóstico de Falhas</span>
+                        <span class="skill-tag">Comandos Elétricos</span>
+                        <span class="skill-tag">Leitura de Esquemas Técnicos</span>
+                        <span class="skill-tag">NR-10 & NR-35</span>
+                        <span class="skill-tag">Manutenção Preventiva / Corretiva</span>
+                    </div>
+                </section>
+
+                <!-- Idiomas e Outros -->
+                <section>
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+                        Diferenciais
+                    </h2>
+                    <div class="skills-list">
+                        <span class="skill-tag">Segurança Operacional</span>
+                        <span class="skill-tag">Trabalho em Equipe</span>
+                        <span class="skill-tag">Comunicação Técnica</span>
+                    </div>
+                </section>
+
+            </aside>
+
+            <!-- Coluna Principal: Experiência e Formação -->
+            <div class="main-content">
+                
+                <!-- Experiências Profissionais -->
+                <section>
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                        Experiência Profissional
+                    </h2>
+
+                    <div class="timeline">
+                        
+                        <!-- TK Elevator -->
+                        <article class="timeline-item">
+                            <div class="timeline-header">
+                                <div>
+                                    <div class="role-title">Técnico de Manutenção</div>
+                                    <div class="company-name">TK ELEVATOR</div>
+                                </div>
+                                <span class="badge-date active">11/2026 &bull; Atual</span>
+                            </div>
+                            <ul class="timeline-list">
+                                <li>Execução de rotinas de manutenção preventiva e corretiva em sistemas de transporte vertical.</li>
+                                <li>Diagnóstico e resolução de falhas elétricas, mecânicas e eletrônicas em painéis de comando.</li>
+                                <li>Garantia da conformidade com padrões rigorosos de segurança e disponibilidade dos equipamentos.</li>
+                            </ul>
+                        </article>
+
+                        <!-- OTIS Elevator -->
+                        <article class="timeline-item">
+                            <div class="timeline-header">
+                                <div>
+                                    <div class="role-title">Estagiário Técnico de Manutenção</div>
+                                    <div class="company-name">OTIS ELEVATOR</div>
+                                </div>
+                                <span class="badge-date">03/2026 &bull; 10/2026</span>
+                            </div>
+                            <ul class="timeline-list">
+                                <li>Suporte técnico a equipes de campo na inspeção e conservação preventiva de elevadores.</li>
+                                <li>Acompanhamento de testes operacionais de segurança e calibração de componentes eletromecânicos.</li>
+                                <li>Auxílio no preenchimento de ordens de serviço e relatórios técnicos de manutenção.</li>
+                            </ul>
+                        </article>
+
+                    </div>
+                </section>
+
+                <!-- Formação Acadêmica -->
+                <section>
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+                        Formação Acadêmica
+                    </h2>
+
+                    <div class="timeline">
+                        
+                        <!-- Engenharia Elétrica -->
+                        <article class="timeline-item">
+                            <div class="timeline-header">
+                                <div>
+                                    <div class="role-title">Engenharia Elétrica (Bacharelado)</div>
+                                    <div class="company-name">UNINTER</div>
+                                </div>
+                                <span class="badge-date active">2026 &bull; Cursando</span>
+                            </div>
+                            <p class="timeline-desc">
+                                Foco em sistemas elétricos de potência, máquinas elétricas, eletrônica e automação de processos.
+                            </p>
+                        </article>
+
+                        <!-- Automação Industrial -->
+                        <article class="timeline-item">
+                            <div class="timeline-header">
+                                <div>
+                                    <div class="role-title">Técnico em Automação Industrial</div>
+                                    <div class="company-name">SENAI</div>
+                                </div>
+                                <span class="badge-date">2026 &bull; Concluído</span>
+                            </div>
+                            <p class="timeline-desc">
+                                Formação técnica prática em comandos elétricos, sistemas pneumáticos e hidráulicos, sensores, CLPs e instrumentação industrial.
+                            </p>
+                        </article>
+
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            Currículo atualizado em 2026 &bull; Felipe Alves
+        </footer>
+
+    </main>
+
+</body>
+</html>
